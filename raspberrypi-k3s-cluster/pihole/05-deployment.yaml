@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole
+  namespace: pihole
+  labels:
+    app: pihole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pihole
+  template:
+    metadata:
+      labels:
+        app: pihole
+    spec:
+      containers:
+        - name: pihole
+          image: pihole/pihole:2022.11.2
+          envFrom:
+            - configMapRef:
+                name: pihole-configmap
+            - secretRef:
+                name: pihole-secret
+          ports:
+            - name: svc-53-udp
+              containerPort: 53
+              protocol: UDP
+            - name: svc-53-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: svc-ui
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: svc-ui
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: svc-ui
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 10
+          volumeMounts:
+            - name: etc-pihole
+              mountPath: /etc/pihole
+            - name: etc-dnsmasq
+              mountPath: /etc/dnsmasq.d
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 100m
+            limits:
+              memory: 2Gi
+              cpu: "1"
+      volumes:
+        - name: etc-pihole
+          persistentVolumeClaim:
+            claimName: pihole-etc-pihole
+        - name: etc-dnsmasq
+          persistentVolumeClaim:
+            claimName: pihole-etc-dnsmasq

@@ -1,0 +1,296 @@
+vyos@atl-tor-router-a:~$ show configuration
+firewall {
+    all-ping enable
+}
+high-availability {
+    vrrp {
+        group Servers {
+            address 10.100.3.1/24 {
+            }
+            hello-source-address 10.100.3.2
+            interface eth1.3
+            no-preempt
+            peer-address 10.100.3.3
+            priority 200
+            vrid 3
+        }
+        group lbvip {
+            address 10.100.31.1/24 {
+            }
+            hello-source-address 10.100.31.2
+            interface eth1.31
+            no-preempt
+            peer-address 10.100.31.3
+            priority 200
+            vrid 31
+        }
+        group mgmt {
+            address 10.100.2.1/24 {
+            }
+            hello-source-address 10.100.2.2
+            interface eth1.2
+            no-preempt
+            peer-address 10.100.2.3
+            priority 200
+            vrid 2
+        }
+        group rteps {
+            address 10.100.11.1/24 {
+            }
+            hello-source-address 10.100.11.2
+            interface eth1.11
+            no-preempt
+            peer-address 10.100.11.3
+            priority 200
+            vrid 11
+        }
+        group teps {
+            address 10.100.10.1/24 {
+            }
+            hello-source-address 10.100.10.2
+            interface eth1.10
+            no-preempt
+            peer-address 10.100.10.3
+            priority 200
+            vrid 10
+        }
+        group vmotion {
+            address 10.100.5.1/24 {
+            }
+            hello-source-address 10.100.5.2
+            interface eth1.5
+            no-preempt
+            peer-address 10.100.5.3
+            priority 200
+            vrid 5
+        }
+    }
+}
+interfaces {
+    ethernet eth0 {
+        address 10.100.1.2/24
+        description LAN
+        hw-id 00:0c:29:2e:07:fb
+    }
+    ethernet eth1 {
+        description DC
+        hw-id 00:0c:29:2e:07:05
+        vif 2 {
+            address 10.100.2.2/24
+            description Mgmt
+        }
+        vif 3 {
+            address 10.100.3.2/24
+            description Servers
+        }
+        vif 5 {
+            address 10.100.5.2/24
+            description vmotion
+        }
+        vif 10 {
+            address 10.100.10.2/24
+            description "NSX-T TEPs"
+        }
+        vif 11 {
+            address 10.100.11.2/24
+            description "NSX-T RTEPs"
+        }
+        vif 21 {
+            address 10.100.21.1/24
+            description "NSX-T Edge Uplink 1"
+        }
+        vif 31 {
+            address 10.100.31.2/24
+            description "LB VIP"
+        }
+    }
+    loopback lo {
+    }
+}
+protocols {
+    bgp {
+        address-family {
+            ipv4-unicast {
+                redistribute {
+                    connected {
+                    }
+                }
+            }
+        }
+        local-as 65100
+        neighbor 10.100.1.1 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as internal
+        }
+        neighbor 10.100.1.3 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as internal
+        }
+        neighbor 10.100.21.2 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as 65300
+        }
+        neighbor 10.100.21.3 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as 65300
+        }
+    }
+}
+service {
+    ssh {
+        port 22
+    }
+}
+system {
+    config-management {
+        commit-revisions 100
+    }
+    conntrack {
+        modules {
+            ftp
+            h323
+            nfs
+            pptp
+            sip
+            sqlnet
+            tftp
+        }
+    }
+    console {
+        device ttyS0 {
+            speed 115200
+        }
+    }
+    host-name atl-tor-router-a
+    login {
+        user vyos {
+            authentication {
+                encrypted-password ****************
+                plaintext-password ****************
+            }
+        }
+    }
+    ntp {
+        server time1.vyos.net {
+        }
+        server time2.vyos.net {
+        }
+        server time3.vyos.net {
+        }
+    }
+    syslog {
+        global {
+            facility all {
+                level info
+            }
+            facility protocols {
+                level debug
+            }
+        }
+    }
+}
+--------------------------
+vyos@atl-tor-router-a:~$ show configuration commands
+set firewall all-ping 'enable'
+set high-availability vrrp group Servers address 10.100.3.1/24
+set high-availability vrrp group Servers hello-source-address '10.100.3.2'
+set high-availability vrrp group Servers interface 'eth1.3'
+set high-availability vrrp group Servers no-preempt
+set high-availability vrrp group Servers peer-address '10.100.3.3'
+set high-availability vrrp group Servers priority '200'
+set high-availability vrrp group Servers vrid '3'
+set high-availability vrrp group lbvip address 10.100.31.1/24
+set high-availability vrrp group lbvip hello-source-address '10.100.31.2'
+set high-availability vrrp group lbvip interface 'eth1.31'
+set high-availability vrrp group lbvip no-preempt
+set high-availability vrrp group lbvip peer-address '10.100.31.3'
+set high-availability vrrp group lbvip priority '200'
+set high-availability vrrp group lbvip vrid '31'
+set high-availability vrrp group mgmt address 10.100.2.1/24
+set high-availability vrrp group mgmt hello-source-address '10.100.2.2'
+set high-availability vrrp group mgmt interface 'eth1.2'
+set high-availability vrrp group mgmt no-preempt
+set high-availability vrrp group mgmt peer-address '10.100.2.3'
+set high-availability vrrp group mgmt priority '200'
+set high-availability vrrp group mgmt vrid '2'
+set high-availability vrrp group rteps address 10.100.11.1/24
+set high-availability vrrp group rteps hello-source-address '10.100.11.2'
+set high-availability vrrp group rteps interface 'eth1.11'
+set high-availability vrrp group rteps no-preempt
+set high-availability vrrp group rteps peer-address '10.100.11.3'
+set high-availability vrrp group rteps priority '200'
+set high-availability vrrp group rteps vrid '11'
+set high-availability vrrp group teps address 10.100.10.1/24
+set high-availability vrrp group teps hello-source-address '10.100.10.2'
+set high-availability vrrp group teps interface 'eth1.10'
+set high-availability vrrp group teps no-preempt
+set high-availability vrrp group teps peer-address '10.100.10.3'
+set high-availability vrrp group teps priority '200'
+set high-availability vrrp group teps vrid '10'
+set high-availability vrrp group vmotion address 10.100.5.1/24
+set high-availability vrrp group vmotion hello-source-address '10.100.5.2'
+set high-availability vrrp group vmotion interface 'eth1.5'
+set high-availability vrrp group vmotion no-preempt
+set high-availability vrrp group vmotion peer-address '10.100.5.3'
+set high-availability vrrp group vmotion priority '200'
+set high-availability vrrp group vmotion vrid '5'
+set interfaces ethernet eth0 address '10.100.1.2/24'
+set interfaces ethernet eth0 description 'LAN'
+set interfaces ethernet eth0 hw-id '00:0c:29:2e:07:fb'
+set interfaces ethernet eth1 description 'DC'
+set interfaces ethernet eth1 hw-id '00:0c:29:2e:07:05'
+set interfaces ethernet eth1 vif 2 address '10.100.2.2/24'
+set interfaces ethernet eth1 vif 2 description 'Mgmt'
+set interfaces ethernet eth1 vif 3 address '10.100.3.2/24'
+set interfaces ethernet eth1 vif 3 description 'Servers'
+set interfaces ethernet eth1 vif 5 address '10.100.5.2/24'
+set interfaces ethernet eth1 vif 5 description 'vmotion'
+set interfaces ethernet eth1 vif 10 address '10.100.10.2/24'
+set interfaces ethernet eth1 vif 10 description 'NSX-T TEPs'
+set interfaces ethernet eth1 vif 11 address '10.100.11.2/24'
+set interfaces ethernet eth1 vif 11 description 'NSX-T RTEPs'
+set interfaces ethernet eth1 vif 21 address '10.100.21.1/24'
+set interfaces ethernet eth1 vif 21 description 'NSX-T Edge Uplink 1'
+set interfaces ethernet eth1 vif 31 address '10.100.31.2/24'
+set interfaces ethernet eth1 vif 31 description 'LB VIP'
+set interfaces loopback lo
+set protocols bgp address-family ipv4-unicast redistribute connected
+set protocols bgp local-as '65100'
+set protocols bgp neighbor 10.100.1.1 address-family ipv4-unicast
+set protocols bgp neighbor 10.100.1.1 remote-as 'internal'
+set protocols bgp neighbor 10.100.1.3 address-family ipv4-unicast
+set protocols bgp neighbor 10.100.1.3 remote-as 'internal'
+set protocols bgp neighbor 10.100.21.2 address-family ipv4-unicast
+set protocols bgp neighbor 10.100.21.2 remote-as '65300'
+set protocols bgp neighbor 10.100.21.3 address-family ipv4-unicast
+set protocols bgp neighbor 10.100.21.3 remote-as '65300'
+set service ssh port '22'
+set system config-management commit-revisions '100'
+set system conntrack modules ftp
+set system conntrack modules h323
+set system conntrack modules nfs
+set system conntrack modules pptp
+set system conntrack modules sip
+set system conntrack modules sqlnet
+set system conntrack modules tftp
+set system console device ttyS0 speed '115200'
+set system host-name 'atl-tor-router-a'
+set system login user vyos authentication encrypted-password '$6$LkHSXxCqKltUi1MA$JdChQ/SlXBpRsLScM7JMD8Fw8PlFwkgFArzaKWcW.Bs3zDv4ZPh.gg0Cl2AbEjdJ0kC2FPwUo8Tq8A/.RQLu41'
+set system login user vyos authentication plaintext-password ''
+set system ntp server time1.vyos.net
+set system ntp server time2.vyos.net
+set system ntp server time3.vyos.net
+set system syslog global facility all level 'info'
+set system syslog global facility protocols level 'debug'

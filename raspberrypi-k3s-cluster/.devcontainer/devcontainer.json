@@ -1,0 +1,27 @@
+{
+	"name": "Home Lab Environment",
+	"build": {
+		"context": "..",
+		"dockerfile": "Dockerfile"
+	},
+	"settings": {
+		"terminal.integrated.defaultProfile.linux": "zsh", 
+        "terminal.integrated.profiles.linux": {
+            "zsh": {
+                "path": "/bin/zsh"
+            }
+        }
+	},
+	"containerEnv": {
+		"KUBECONFIG": "/workspaces/homelab-k3s/kubeconfig"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-kubernetes-tools.vscode-kubernetes-tools",
+				"mrmlnc.vscode-duplicate",
+				"albert.TabOut"
+			]
+		}
+	}
+}
