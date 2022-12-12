@@ -13,7 +13,7 @@
         }
 	},
 	"containerEnv": {
-		"KUBECONFIG": "/workspaces/homelab-k3s/kubeconfig"
+		"KUBECONFIG": "/workspaces/homelab/raspberrypi-k3s-cluster/kubeconfig"
 	},
 	"customizations": {
 		"vscode": {
