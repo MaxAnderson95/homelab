@@ -1,3 +1,57 @@
+high-availability {
+    vrrp {
+        group management {
+            address 10.100.150.1/24 {
+            }
+            hello-source-address 10.100.150.2
+            interface eth1.150
+            no-preempt
+            peer-address 10.100.150.3
+            priority 200
+            vrid 150
+        }
+        group nsx-rtep {
+            address 10.100.176.1/24 {
+            }
+            hello-source-address 10.100.176.2
+            interface eth1.176
+            no-preempt
+            peer-address 10.100.176.3
+            priority 200
+            vrid 176
+        }
+        group nsx-tep {
+            address 10.100.175.1/24 {
+            }
+            hello-source-address 10.100.175.2
+            interface eth1.175
+            no-preempt
+            peer-address 10.100.175.3
+            priority 200
+            vrid 175
+        }
+        group servers {
+            address 10.100.161.1/24 {
+            }
+            hello-source-address 10.100.161.2
+            interface eth1.161
+            no-preempt
+            peer-address 10.100.161.3
+            priority 200
+            vrid 161
+        }
+        group vip {
+            address 10.100.55.1/24 {
+            }
+            hello-source-address 10.100.55.2
+            interface eth1.55
+            no-preempt
+            peer-address 10.100.55.3
+            priority 200
+            vrid 55
+        }
+    }
+}
 interfaces {
     ethernet eth0 {
         address 10.100.1.2/24
@@ -5,18 +59,63 @@ interfaces {
         hw-id 00:0c:29:cb:65:b9
     }
     ethernet eth1 {
-        description DATACENTER
+        description DC
         hw-id 00:0c:29:cb:65:c3
+        vif 55 {
+            address 10.100.55.2/24
+            description vip
+        }
+        vif 150 {
+            address 10.100.150.2/24
+            description management
+        }
+        vif 161 {
+            address 10.100.161.2/24
+            description servers
+        }
+        vif 173 {
+            address 10.100.173.1/24
+            description nsx-t0-uplink-1
+        }
+        vif 175 {
+            address 10.100.175.2/24
+            description nsx-tep
+        }
+        vif 176 {
+            address 10.100.176.2/24
+            description nsx-rtep
+        }
     }
     loopback lo {
     }
 }
 protocols {
-    static {
-        route 0.0.0.0/0 {
-            next-hop 10.100.1.1 {
+    bgp {
+        address-family {
+            ipv4-unicast {
+                redistribute {
+                    connected {
+                    }
+                }
             }
         }
+        neighbor 10.100.1.1 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as internal
+        }
+        neighbor 10.100.1.3 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as internal
+        }
+        system-as 65100
+    }
+    static {
     }
 }
 service {

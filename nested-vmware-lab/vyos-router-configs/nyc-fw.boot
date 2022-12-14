@@ -80,6 +80,42 @@ interfaces {
     }
 }
 protocols {
+    bgp {
+        address-family {
+            ipv4-unicast {
+                network 0.0.0.0/0 {
+                }
+                network 10.200.0.0/16 {
+                }
+                redistribute {
+                    static {
+                    }
+                }
+            }
+        }
+        neighbor 10.0.0.1 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as 65100
+        }
+        neighbor 10.200.1.2 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as internal
+        }
+        neighbor 10.200.1.3 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as internal
+        }
+        system-as 65200
+    }
     static {
         route 0.0.0.0/0 {
             next-hop 192.168.1.1 {
