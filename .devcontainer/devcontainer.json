@@ -20,7 +20,8 @@
 			"extensions": [
 				"ms-kubernetes-tools.vscode-kubernetes-tools",
 				"mrmlnc.vscode-duplicate",
-				"albert.TabOut"
+				"albert.TabOut",
+				"hashicorp.terraform"
 			]
 		}
 	}

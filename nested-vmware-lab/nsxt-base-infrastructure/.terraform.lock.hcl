@@ -6,6 +6,7 @@ provider "registry.terraform.io/vmware/nsxt" {
   constraints = "3.2.8"
   hashes = [
     "h1:BSvIoB4w6FuUAzPAHZxLCJNqnutBc3Rv2RqXr1DCSUI=",
+    "h1:LB/7ZD0nJL25YkVMW+Tal1n2cxHzMOm9/Ka/Z9T8IfA=",
     "zh:05e7decd73109ac0b6515eb2c7fae57ef7a8e4d96f74049862f848074edc5759",
     "zh:0d48c340032dcc6c245682630f6c28a5bdf9e84121ac8296124a7b7f6b7fc25d",
     "zh:1cba3d77842d1847d23f819a4023f70791a1f86eb3cf4380ddff5dc3e3b92e0f",

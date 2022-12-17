@@ -4,18 +4,18 @@ data "nsxt_policy_site" "ATL" {
 }
 
 data "nsxt_policy_edge_cluster" "ATL" {
-  display_name = "ATL-Edge-Cluster"
+  display_name = "ATL-NSX-EDGE-CLUSTER"
   site_path    = data.nsxt_policy_site.ATL.path
 }
 
 data "nsxt_policy_edge_node" "ATL-EN1" {
   edge_cluster_path = data.nsxt_policy_edge_cluster.ATL.path
-  display_name      = "ATL-EDGE-01"
+  display_name      = "ATL-NSX-EDGE-01"
 }
 
 data "nsxt_policy_edge_node" "ATL-EN2" {
   edge_cluster_path = data.nsxt_policy_edge_cluster.ATL.path
-  display_name      = "ATL-EDGE-02"
+  display_name      = "ATL-NSX-EDGE-02"
 }
 
 data "nsxt_policy_transport_zone" "ATL_default_vlan" {
@@ -30,18 +30,18 @@ data "nsxt_policy_site" "NYC" {
 }
 
 data "nsxt_policy_edge_cluster" "NYC" {
-  display_name = "NYC-Edge-Cluster"
+  display_name = "NYC-NSX-EDGE-CLUSTER"
   site_path    = data.nsxt_policy_site.NYC.path
 }
 
 data "nsxt_policy_edge_node" "NYC-EN1" {
   edge_cluster_path = data.nsxt_policy_edge_cluster.NYC.path
-  display_name      = "NYC-EDGE-01"
+  display_name      = "NYC-NSX-EDGE-01"
 }
 
 data "nsxt_policy_edge_node" "NYC-EN2" {
   edge_cluster_path = data.nsxt_policy_edge_cluster.NYC.path
-  display_name      = "NYC-EDGE-02"
+  display_name      = "NYC-NSX-EDGE-02"
 }
 
 data "nsxt_policy_transport_zone" "NYC_default_vlan" {
