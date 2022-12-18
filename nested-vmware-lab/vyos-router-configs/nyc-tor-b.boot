@@ -113,6 +113,20 @@ protocols {
             }
             remote-as internal
         }
+        neighbor 10.200.174.10 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as 65400
+        }
+        neighbor 10.200.174.11 {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as 65400
+        }
         system-as 65200
     }
 }
