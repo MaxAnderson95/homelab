@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: unifi-configmap
+  namespace: unifi
+data:
+  TZ: "America/New_York"
+  MEM_LIMIT: "1024"
+  MEM_STARTUP: "1024"
