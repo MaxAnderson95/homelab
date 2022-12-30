@@ -1,0 +1,4 @@
+hostname: rancher.home.maxanderson.tech
+ingress:
+  tls:
+    source: secret
