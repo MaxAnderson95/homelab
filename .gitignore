@@ -1,4 +1,6 @@
 kubeconfig
+rke2.yaml
+k3s.yaml
 *.secret.yaml
 
 # Local .terraform directories
