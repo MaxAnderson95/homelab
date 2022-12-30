@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: home-wildcard-certificate
+  namespace: default
+spec:
+  commonName: '*.home.maxanderson.tech'
+  dnsNames:
+  - '*.home.maxanderson.tech'
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+  secretName: home-wildcard-tls

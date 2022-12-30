@@ -1,0 +1,12 @@
+installCRDs: true
+repliaCount: 1
+extraArgs:
+  - --dns01-recursive-nameservers=8.8.8.8:53,8.8.4.4:53
+  - --dns01-recursive-nameservers-only
+podDnsPolicy: "None"
+podDnsConfig:
+  nameservers:
+    - "8.8.8.8"
+    - "8.8.4.4"
+
+# Setting the various DNS settings so that when it performs DNS ACME challenge verrifications its guaranteed to work.
