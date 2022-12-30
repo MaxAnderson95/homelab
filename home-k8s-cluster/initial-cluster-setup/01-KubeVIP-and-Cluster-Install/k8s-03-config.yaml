@@ -1,0 +1,8 @@
+token: <redacted>
+server: https://k8s.home.maxanderson.tech:9345
+write-kubeconfig-mode: "0644"
+tls-san:
+  - k8s-03
+  - k8s.home.maxanderson.tech
+disable:
+  - rke2-ingress-nginx
