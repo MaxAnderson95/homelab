@@ -1,4 +1,4 @@
-# Initial Cluster Setup
+# Initial Cluster Setup with KubeVIP
 
 ## KubeVIP
 On Node 1:
