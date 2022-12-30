@@ -1,0 +1,3 @@
+fullnameOverride: "sealed-secrets-controller" #This is to set the service (and other object names) to use the default that the CLI client expects
+namespace: "kube-system"
+secretName: "sealed-secrets-key" # I used an existing encryption key from an old cluster. Leave this configuration option out for the controller to generate an encryption key on first startup
