@@ -12,9 +12,6 @@
             }
         }
 	},
-	"containerEnv": {
-		"KUBECONFIG": "/workspaces/homelab/kubeconfig"
-	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -24,5 +21,8 @@
 				"hashicorp.terraform"
 			]
 		}
-	}
+	},
+	"mounts": [
+		"source=${localEnv:USERPROFILE}\\.kube,target=/root/.kube,type=bind,consistency=cached"
+	]
 }
