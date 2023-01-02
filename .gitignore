@@ -2,6 +2,7 @@ kubeconfig
 rke2.yaml
 k3s.yaml
 *.secret.yaml
+*.key
 
 **/test
 
