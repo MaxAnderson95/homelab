@@ -9,7 +9,7 @@
 
 1. Within the manifest, edit the `argocd-cmd-params-cm` ConfigMap and set the `server.insecure` property to `true`. It should look like the following:
    ```yaml
-      apiVersion: v1
+   apiVersion: v1
    kind: ConfigMap
    metadata:
    labels:
