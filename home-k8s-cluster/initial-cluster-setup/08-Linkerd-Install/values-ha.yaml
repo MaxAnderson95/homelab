@@ -20,7 +20,7 @@ enablePodAntiAffinity: true
 proxy:
   resources:
     cpu:
-      request: 100m
+      request: 0m
     memory:
       limit: 250Mi
       request: 20Mi
@@ -30,7 +30,7 @@ controllerReplicas: 3
 controllerResources: &controller_resources
   cpu: &controller_resources_cpu
     limit: ""
-    request: 100m
+    request: 0m
   memory:
     limit: 250Mi
     request: 50Mi
