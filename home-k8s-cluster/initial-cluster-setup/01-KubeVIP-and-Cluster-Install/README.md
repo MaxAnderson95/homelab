@@ -70,6 +70,7 @@ Back on Node 1:
     echo "  - ${NODE_IP}" >> /etc/rancher/rke2/config.yaml
     echo "disable:" >> /etc/rancher/rke2/config.yaml
     echo "  - rke2-ingress-nginx" >> /etc/rancher/rke2/config.yaml
+    echo "control-plane-resource-requests: kube-apiserver-cpu=0m,kube-scheduler-cpu=0m,kube-controller-manager-cpu=0m,kube-proxy-cpu=0m,etcd-cpu=0m,cloud-controller-manager-cpu=0m" >> /etc/rancher/rke2/config.yaml
     sudo chmod 644 /etc/rancher/rke2/config.yaml
     ```
 
@@ -120,6 +121,7 @@ Back on Node 1:
     echo "  - ${VIP_DNS}" >> /etc/rancher/rke2/config.yaml
     echo "disable:" >> /etc/rancher/rke2/config.yaml
     echo "  - rke2-ingress-nginx" >> /etc/rancher/rke2/config.yaml
+    echo "control-plane-resource-requests: kube-apiserver-cpu=0m,kube-scheduler-cpu=0m,kube-controller-manager-cpu=0m,kube-proxy-cpu=0m,etcd-cpu=0m,cloud-controller-manager-cpu=0m" >> /etc/rancher/rke2/config.yaml
     sudo chmod 644 /etc/rancher/rke2/config.yaml
     ```
 
