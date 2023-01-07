@@ -18,7 +18,8 @@
 				"ms-kubernetes-tools.vscode-kubernetes-tools",
 				"mrmlnc.vscode-duplicate",
 				"albert.TabOut",
-				"hashicorp.terraform"
+				"hashicorp.terraform",
+				"oderwat.indent-rainbow"
 			]
 		}
 	},
