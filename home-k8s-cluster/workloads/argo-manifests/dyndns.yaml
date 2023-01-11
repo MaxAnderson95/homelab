@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dyndns
+  namespace: argocd
+spec:
+  destination:
+    namespace: dyndns
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: home-k8s-cluster/workloads/manifests/dyndns
+    repoURL: https://github.com/MaxAnderson95/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
