@@ -1,0 +1,57 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirecthttps
+  namespace: unifi
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: insecure-transport
+  namespace: unifi
+spec:
+  insecureSkipVerify: true
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: unifi-server-https
+  namespace: unifi
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`unifi.home.maxanderson.tech`)
+      priority: 10
+      services:
+        - name: unifi-web-ui
+          port: 8443
+          scheme: https
+          serversTransport: insecure-transport
+  tls: {} # Don't specify TLS and allow Traefik to select the default TLS store
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: unifi-server-http
+  namespace: unifi
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`unifi.home.maxanderson.tech`)
+      priority: 10
+      middlewares:
+        - name: redirecthttps
+          namespace: unifi
+      services:
+        - name: unifi-web-ui
+          port: 8443
+          scheme: https
