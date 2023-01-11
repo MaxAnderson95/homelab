@@ -1,3 +1,0 @@
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-helm install cert-manager jetstack/cert-manager --namespace cert-manager --values=values.yaml --version v1.10.1
