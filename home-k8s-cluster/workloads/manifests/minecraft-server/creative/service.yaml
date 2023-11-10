@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-server-creative
+  annotations:
+    mc-router.itzg.me/externalServerName: "creative.mc.maxanderson.tech"
+spec:
+  type: ClusterIP
+  selector:
+    app: minecraft-server-creative
+  ports:
+    - port: 25565
+      targetPort: 25565
+      protocol: TCP
+      name: minecraft
