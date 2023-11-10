@@ -37,6 +37,11 @@ spec:
                 configMapKeyRef:
                   name: minecraft-global-config-ops-list
                   key: ops.txt
+            - name: MODRINTH_PROJECTS
+              valueFrom:
+                configMapKeyRef:
+                  name: minecraft-creative-modrinth-projects-configmap
+                  key: modrinth_projects.txt
           ports:
             - containerPort: 25565
               name: minecraft

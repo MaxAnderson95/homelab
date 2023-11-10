@@ -9,3 +9,6 @@ configMapGenerator:
   - name: minecraft-creative-env-configmap
     envs:
       - "./config/settings.env"
+  - name: minecraft-creative-modrinth-projects-configmap
+    files:
+      - "./config/modrinth_projects.txt"
