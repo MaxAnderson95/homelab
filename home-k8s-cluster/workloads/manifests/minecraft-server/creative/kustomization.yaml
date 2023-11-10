@@ -9,3 +9,6 @@ configMapGenerator:
   - name: minecraft-creative-env-configmap
     envs:
       - "./config/settings.env"
+  - name: minecraft-creative-plugins-list-configmap
+    files:
+      - "./config/plugins.txt"

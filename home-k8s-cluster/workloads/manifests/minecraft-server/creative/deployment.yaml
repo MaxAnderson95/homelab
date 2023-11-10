@@ -37,6 +37,11 @@ spec:
                 configMapKeyRef:
                   name: minecraft-global-config-ops-list
                   key: ops.txt
+            - name: PLUGINS
+              valueFrom:
+                configMapKeyRef:
+                  name: minecraft-creative-plugins-list-configmap
+                  key: plugins.txt
           ports:
             - containerPort: 25565
               name: minecraft
