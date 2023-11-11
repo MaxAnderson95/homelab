@@ -13,8 +13,8 @@ spec:
     repoURL: https://github.com/MaxAnderson95/homelab.git
     targetRevision: HEAD
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
       - CreateNamespace=true
