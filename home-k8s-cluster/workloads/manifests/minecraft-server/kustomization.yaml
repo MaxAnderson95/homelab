@@ -6,6 +6,7 @@ namespace: minecraft
 resources:
   - ./creative
   - ./survival
+  - ./legacy-1
   - ./router
 
 configMapGenerator:
