@@ -1,0 +1,2 @@
+https://dev.bukkit.org/projects/worldedit/files/latest
+https://dev.bukkit.org/projects/essentialsx/files/latest
