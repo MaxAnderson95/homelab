@@ -10,6 +10,7 @@ spec:
     targetRevision: HEAD
     path: home-k8s-cluster/workloads/manifests/kube-prometheus
     directory:
+      exclude: "**/*.json"
       jsonnet:
         libs:
           - vendor
