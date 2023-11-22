@@ -1,0 +1,59 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: alertmanager-main-ingress-network-policy
+  namespace: monitoring
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/component: alert-router
+      app.kubernetes.io/instance: main
+      app.kubernetes.io/name: alertmanager
+      app.kubernetes.io/part-of: kube-prometheus
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: traefik
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: traefik
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: alertmanager-main-https
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`alertmanager.home.maxanderson.tech`)
+      priority: 10
+      services:
+        - name: alertmanager-main
+          port: 9093
+          scheme: http
+  tls: {} # Don't specify TLS and allow Traefik to select the default TLS store
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: alertmanager-main-http
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`alertmanager.home.maxanderson.tech`) && PathPrefix(`/`)
+      kind: Rule
+      middlewares:
+        - name: redirecthttps
+          namespace: monitoring
+      services:
+        - name: alertmanager-main
+          port: 9093
