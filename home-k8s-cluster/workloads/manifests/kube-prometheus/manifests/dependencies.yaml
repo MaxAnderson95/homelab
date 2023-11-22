@@ -1,5 +1,0 @@
-- source:
-    git:
-      remote: https://github.com/prometheus-operator/kube-prometheus.git
-      subdir: jsonnet/kube-prometheus
-  version: main
