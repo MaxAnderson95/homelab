@@ -11,7 +11,7 @@ spec:
   source:
     path: home-k8s-cluster/workloads/manifests/pihole
     repoURL: https://github.com/MaxAnderson95/homelab.git
-    targetRevision: HEAD
+    targetRevision: v0.0.1
   syncPolicy:
     automated:
       prune: true

@@ -7,12 +7,12 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/MaxAnderson95/homelab.git
-      targetRevision: HEAD
+      targetRevision: v0.0.1
       path: home-k8s-cluster/workloads/manifests/kube-prometheus/manifests
       directory:
         recurse: true
     - repoURL: https://github.com/MaxAnderson95/homelab.git
-      targetRevision: HEAD
+      targetRevision: v0.0.1
       path: home-k8s-cluster/workloads/manifests/kube-prometheus/custom-manifests
   destination:
     server: "https://kubernetes.default.svc"
