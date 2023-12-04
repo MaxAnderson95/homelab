@@ -28,6 +28,8 @@ kind: IngressRoute
 metadata:
   name: argocd-server-https
   namespace: argocd
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: argocd.home.maxanderson.tech
 spec:
   entryPoints:
     - websecure
