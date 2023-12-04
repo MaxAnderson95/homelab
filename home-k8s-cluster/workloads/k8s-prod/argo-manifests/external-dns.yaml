@@ -13,11 +13,14 @@ spec:
         valuesObject:
           provider: pihole
           registry: noop
+          policy: upsert-only
           sources:
             - service
             - ingress
             - node
             - traefik-proxy
+          extraArgs:
+            - --pihole-server=https://pihole.home.maxanderson.tech
     - path: home-k8s-cluster/workloads/k8s-prod/manifests/external-dns
       repoURL: https://github.com/MaxAnderson95/homelab.git
       targetRevision: HEAD
