@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    path: home-k8s-cluster/workloads/k8s-prod/external-dns
+    path: home-k8s-cluster/workloads/k8s-prod/manifest/external-dns
     repoURL: https://github.com/MaxAnderson95/homelab.git
     targetRevision: HEAD
   destination:
