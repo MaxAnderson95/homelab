@@ -22,7 +22,7 @@ spec:
             nameservers:
               - "8.8.8.8"
               - "8.8.4.4"
-    - path: home-k8s-cluster/workloads/k8s-prod/manifest/cluster-issuer
+    - path: home-k8s-cluster/workloads/k8s-prod/manifests/cluster-issuer
       repoURL: https://github.com/MaxAnderson95/homelab.git
       targetRevision: HEAD
   destination:
