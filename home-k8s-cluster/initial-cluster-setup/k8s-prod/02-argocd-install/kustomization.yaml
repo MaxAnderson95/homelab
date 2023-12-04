@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: argocd
+
+resources:
+  - namespace.yaml
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.9.3
+  - app-of-apps.yaml
+  # - ingress.yaml
+
+patches:
+  # Patch the ArgoCD server to use an insecure connection
+  # because it's behind a load balancer with SSL termination
+  - target:
+      kind: ConfigMap
+      name: argocd-cmd-params-cm
+    patch: |-
+      - op: add
+        path: /data
+        value:
+          server.insecure: 'true'

@@ -1,5 +1,0 @@
-deployment:
-  kind: DaemonSet
-service:
-  annotations:
-    metallb.universe.tf/allow-shared-ip: "ip-shared-with-traefik"
