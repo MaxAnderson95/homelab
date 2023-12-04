@@ -17,7 +17,6 @@ spec:
           - ingress
           - node
           - traefik-proxy
-
     - path: home-k8s-cluster/workloads/k8s-prod/manifests/external-dns
       repoURL: https://github.com/MaxAnderson95/homelab.git
       targetRevision: HEAD
