@@ -15,7 +15,7 @@ spec:
   source:
     path: home-k8s-cluster/workloads/k8s-prod/argo-manifests
     repoURL: https://github.com/MaxAnderson95/homelab.git
-    targetRevision: HEAD
+    targetRevision: v0.0.1
     directory:
       recurse: true
   syncPolicy:
