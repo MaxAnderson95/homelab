@@ -5,10 +5,22 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    path: home-k8s-cluster/workloads/k8s-prod/manifests/external-dns
-    repoURL: https://github.com/MaxAnderson95/homelab.git
-    targetRevision: HEAD
+  sources:
+    - chart: external-dns
+      repoURL: https://kubernetes-sigs.github.io/external-dns/
+      targetRevision: 1.13.1 # App verison 0.13.6
+      valuesObject:
+        provider: pihole
+        registry: noop
+        sources:
+          - service
+          - ingress
+          - node
+          - traefik-proxy
+
+    - path: home-k8s-cluster/workloads/k8s-prod/manifests/external-dns
+      repoURL: https://github.com/MaxAnderson95/homelab.git
+      targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
     namespace: external-dns

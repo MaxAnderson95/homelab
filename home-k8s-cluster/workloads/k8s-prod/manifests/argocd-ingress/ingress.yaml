@@ -13,7 +13,7 @@ spec:
   dnsNames:
     - argocd.home.maxanderson.tech
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: redirecthttps
@@ -23,7 +23,7 @@ spec:
     scheme: https
     permanent: true
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: argocd-server-https
@@ -51,7 +51,7 @@ spec:
     secretName: argocd-tls
   #tls: {} # Don't specify TLS and allow Traefik to select the default TLS store
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: argocd-server-http
