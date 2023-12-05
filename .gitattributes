@@ -1,3 +1,7 @@
 # Ignore all differences in line endings
 *        -crlf
 *.boot linguist-detectable=false
+*.yml linguist-detectable=true
+*.yml linguist-language=YAML
+*.yaml linguist-detectable=true
+*.yaml linguist-language=YAML
