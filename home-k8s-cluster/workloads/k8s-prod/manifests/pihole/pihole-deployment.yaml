@@ -35,14 +35,14 @@ spec:
               containerPort: 53
               protocol: TCP
           livenessProbe:
-            httpGet:
+            tcpSocket:
               port: svc-80-tcp-web
-            initialDelaySeconds: 20
+            initialDelaySeconds: 10
             periodSeconds: 5
           readinessProbe:
-            httpGet:
+            tcpSocket:
               port: svc-80-tcp-web
-            initialDelaySeconds: 20
+            initialDelaySeconds: 10
             periodSeconds: 10
             failureThreshold: 10
           volumeMounts:
