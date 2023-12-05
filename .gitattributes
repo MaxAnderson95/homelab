@@ -1,2 +1,3 @@
 # Ignore all differences in line endings
 *        -crlf
+*.boot linguist-detectable=false
