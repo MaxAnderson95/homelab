@@ -1,15 +1,15 @@
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: pihole-cert
-spec:
-  secretName: pihole-tls
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  commonName: "pihole.home.maxanderson.tech"
-  dnsNames:
-    - "pihole.home.maxanderson.tech"
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: pihole-cert
+# spec:
+#   secretName: pihole-tls
+#   issuerRef:
+#     name: letsencrypt-prod
+#     kind: ClusterIssuer
+#   commonName: "pihole.home.maxanderson.tech"
+#   dnsNames:
+#     - "pihole.home.maxanderson.tech"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware

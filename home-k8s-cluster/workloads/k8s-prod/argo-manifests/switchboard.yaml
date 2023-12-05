@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: switchboard
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+spec:
+  project: default
+  source:
+    chart: switchboard
+    repoURL: "oci://ghcr.io/borchero/charts/switchboard"
+    targetRevision: 0.5.8
+    helm:
+      releaseName: switchboard
+      valuesObject:
+        integrations.certManager.enabled: true
+        integrations.externalDNS.enabled: true
+        integrations.externalDNS.targetService.name: traefik
+        integrations.externalDNS.targetService.namespace: kube-system
+        cert-manager.install: false
+        cert-manager.installCRDs: false
+        certificateIssuer.create: false
+        external-dns.install: false
+        external-dns.crd.create: false
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: switchboard
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
