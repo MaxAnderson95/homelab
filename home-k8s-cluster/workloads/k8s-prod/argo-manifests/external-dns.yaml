@@ -30,7 +30,7 @@ spec:
     - path: home-k8s-cluster/workloads/k8s-prod/manifests/external-dns
       repoURL: https://github.com/MaxAnderson95/homelab.git
       targetRevision: HEAD
-    - path: docs/contributing/crd-source/crd-manifest.yaml
+    - path: docs/contributing/crd-source
       repoURL: https://github.com/kubernetes-sigs/external-dns.git
       targetRevision: HEAD
       directory:
