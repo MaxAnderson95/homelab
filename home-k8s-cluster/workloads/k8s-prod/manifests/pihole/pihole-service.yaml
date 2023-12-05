@@ -1,0 +1,45 @@
+---
+# Web UI Service
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-web-svc
+spec:
+  selector:
+    app: pihole
+  type: ClusterIP
+  ports:
+    - name: svc-80-tcp-web
+      port: 80
+      targetPort: 80
+      protocol: TCP
+---
+# DNS (UDP) Service
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-dns-udp-svc
+spec:
+  selector:
+    app: pihole
+  type: LoadBalancer
+  ports:
+    - name: svc-53-udp-dns
+      port: 53
+      targetPort: 53
+      protocol: UDP
+---
+# DNS (TCP) Service
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-dns-tcp-svc
+spec:
+  selector:
+    app: pihole
+  type: LoadBalancer
+  ports:
+    - name: svc-53-tcp-dns
+      port: 53
+      targetPort: 53
+      protocol: TCP

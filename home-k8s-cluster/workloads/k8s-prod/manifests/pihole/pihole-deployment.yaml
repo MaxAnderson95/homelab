@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  selector:
+    matchLabels:
+      app: pihole
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pihole
+    spec:
+      containers:
+        - name: pihole
+          image: pihole/pihole:2023.11.0
+          envFrom:
+            - configMapRef:
+                name: pihole-config
+            - secretRef:
+                name: pihole-password
+          ports:
+            - name: svc-80-tcp-web
+              containerPort: 80
+              protocol: TCP
+            - name: svc-53-udp-dns
+              containerPort: 53
+              protocol: UDP
+            - name: svc-53-tcp-dns
+              containerPort: 53
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: svc-80-tcp-web
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: svc-80-tcp-web
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 10
+          volumeMounts:
+            - name: pihole-etc-pihole
+              mountPath: /etc/pihole
+            - name: pihole-etc-dnsmasq
+              mountPath: /etc/dnsmasq.d
+      volumes:
+        - name: pihole-etc-pihole
+          persistentVolumeClaim:
+            claimName: pihole-etc-pihole-pvc
+        - name: pihole-etc-dnsmasq
+          persistentVolumeClaim:
+            claimName: pihole-etc-dnsmasq-pvc
