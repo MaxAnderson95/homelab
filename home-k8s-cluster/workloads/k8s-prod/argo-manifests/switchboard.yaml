@@ -22,7 +22,7 @@ spec:
         cert-manager.installCRDs: false
         certificateIssuer.create: false
         external-dns.install: false
-        external-dns.crd.create: false
+        external-dns.crd.create: true
 
   destination:
     server: "https://kubernetes.default.svc"
