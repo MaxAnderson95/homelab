@@ -37,12 +37,12 @@ spec:
           livenessProbe:
             httpGet:
               port: svc-80-tcp-web
-            initialDelaySeconds: 10
+            initialDelaySeconds: 20
             periodSeconds: 5
           readinessProbe:
             httpGet:
               port: svc-80-tcp-web
-            initialDelaySeconds: 10
+            initialDelaySeconds: 20
             periodSeconds: 10
             failureThreshold: 10
           volumeMounts:
