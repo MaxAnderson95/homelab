@@ -11,17 +11,36 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-ingress
+  name: argocd-ingress-https
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.middlewares: argocd-https-redirect@kubernetescrd
-    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
     - hosts:
         - argocd.home.maxanderson.tech
       secretName: argocd-tls
+  rules:
+    - host: argocd.home.maxanderson.tech
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-ingress-http
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: argocd-https-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
   rules:
     - host: argocd.home.maxanderson.tech
       http:
