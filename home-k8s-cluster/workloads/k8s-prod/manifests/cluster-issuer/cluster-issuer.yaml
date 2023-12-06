@@ -5,7 +5,6 @@ metadata:
 spec:
   acme:
     email: max.a.anderson95@gmail.com
-    preferredChain: ""
     privateKeySecretRef:
       name: letsencrypt-prod
     server: https://acme-v02.api.letsencrypt.org/directory
