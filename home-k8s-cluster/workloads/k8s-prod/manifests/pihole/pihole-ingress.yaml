@@ -24,7 +24,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.middlewares: argocd-admin-page-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: pihole-admin-page-redirect@kubernetescrd
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
@@ -46,13 +46,13 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-ingress-http
+  name: pihole-ingress-http
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: argocd-https-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: pihole-https-redirect@kubernetescrd
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-    - host: argocd.home.maxanderson.tech
+    - host: pihole.home.maxanderson.tech
       http:
         paths:
           - pathType: Prefix
