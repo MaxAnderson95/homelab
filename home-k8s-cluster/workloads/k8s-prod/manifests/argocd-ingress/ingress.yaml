@@ -1,8 +1,8 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: argocd-redirect
-  namespace: kube-system
+  name: https-redirect
+  namespace: argocd
 spec:
   redirectScheme:
     scheme: https
@@ -15,9 +15,8 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.middlewares: argocd-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: argocd-https-redirect@kubernetescrd
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
-    # raefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   tls:
     - hosts:
