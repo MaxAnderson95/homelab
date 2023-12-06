@@ -1,46 +1,46 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: external-dns
-#   namespace: argocd
-# spec:
-#   project: default
-#   sources:
-#     - chart: external-dns
-#       repoURL: https://kubernetes-sigs.github.io/external-dns/
-#       targetRevision: 1.13.1 # App verison 0.13.6
-#       helm:
-#         valuesObject:
-#           provider: pihole
-#           registry: noop
-#           policy: upsert-only
-#           sources:
-#             - service
-#             - ingress
-#             - node
-#             - traefik-proxy
-#           env:
-#             - name: EXTERNAL_DNS_PIHOLE_PASSWORD
-#               valueFrom:
-#                 secretKeyRef:
-#                   name: pihole-secret
-#                   key: EXTERNAL_DNS_PIHOLE_PASSWORD
-#           extraArgs:
-#             - --pihole-server=http://pihole-web-svc.pihole.svc.cluster.local
-#     - path: home-k8s-cluster/workloads/k8s-prod/manifests/external-dns
-#       repoURL: https://github.com/MaxAnderson95/homelab.git
-#       targetRevision: HEAD
-#     - path: docs/contributing/crd-source
-#       repoURL: https://github.com/kubernetes-sigs/external-dns.git
-#       targetRevision: HEAD
-#       directory:
-#         include: crd-manifest.yaml
-#   destination:
-#     server: "https://kubernetes.default.svc"
-#     namespace: external-dns
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - chart: external-dns
+      repoURL: https://kubernetes-sigs.github.io/external-dns/
+      targetRevision: 1.13.1 # App verison 0.13.6
+      helm:
+        valuesObject:
+          provider: pihole
+          registry: noop
+          policy: upsert-only
+          sources:
+            - service
+            - ingress
+            - node
+            - traefik-proxy
+          env:
+            - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pihole-secret
+                  key: EXTERNAL_DNS_PIHOLE_PASSWORD
+          extraArgs:
+            - --pihole-server=http://pihole-web-svc.pihole.svc.cluster.local
+    - path: home-k8s-cluster/workloads/k8s-prod/manifests/external-dns
+      repoURL: https://github.com/MaxAnderson95/homelab.git
+      targetRevision: HEAD
+    - path: docs/contributing/crd-source
+      repoURL: https://github.com/kubernetes-sigs/external-dns.git
+      targetRevision: HEAD
+      directory:
+        include: crd-manifest.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: external-dns
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
