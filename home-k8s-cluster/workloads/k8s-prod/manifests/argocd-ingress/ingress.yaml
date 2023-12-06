@@ -14,9 +14,9 @@ metadata:
   name: argocd-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  #   traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
-  #   traefik.ingress.kubernetes.io/router.middlewares: argocd-redirect@kubernetescrd
-  #   traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: argocd-redirect@kubernetescrd
+    # traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+    # raefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   tls:
     - hosts:
