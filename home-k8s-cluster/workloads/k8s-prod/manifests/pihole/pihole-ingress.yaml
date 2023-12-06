@@ -15,7 +15,7 @@ metadata:
 spec:
   replacePathRegex:
     regex: ^/$
-    replacement: /admin
+    replacement: /admin/login.php
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
