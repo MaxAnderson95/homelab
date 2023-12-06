@@ -18,11 +18,11 @@ spec:
         integrations.externalDNS.enabled: true
         integrations.externalDNS.targetService.name: traefik
         integrations.externalDNS.targetService.namespace: kube-system
-        cert-manager.install: false
-        cert-manager.installCRDs: false
+        cert-manager.install: true
+        cert-manager.installCRDs: true
         certificateIssuer.create: false
-        external-dns.install: false
-        external-dns.crd.create: false
+        external-dns.install: true
+        external-dns.crd.create: true
 
   destination:
     server: "https://kubernetes.default.svc"
