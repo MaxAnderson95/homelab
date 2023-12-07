@@ -28,27 +28,27 @@ spec:
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: netbox-db-credentials
+                  name: netbox-db-cluster-app
                   key: dbname
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: netbox-db-credentials
+                  name: netbox-db-cluster-app
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: netbox-db-credentials
+                  name: netbox-db-cluster-app
                   key: password
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
-                  name: netbox-db-credentials
+                  name: netbox-db-cluster-app
                   key: host
             - name: DB_PORT
               valueFrom:
                 secretKeyRef:
-                  name: netbox-db-credentials
+                  name: netbox-db-cluster-app
                   key: port
       volumes:
         - name: netbox-volume
