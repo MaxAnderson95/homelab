@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: netbox
+  namespace: argocd
+spec:
+  destination:
+    namespace: netbox
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: home-k8s-cluster/workloads/k8s-prod/manifests/netbox
+    repoURL: https://github.com/MaxAnderson95/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

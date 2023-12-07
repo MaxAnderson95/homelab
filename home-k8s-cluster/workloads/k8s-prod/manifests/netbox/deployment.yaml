@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netbox
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  selector:
+    matchLabels:
+      app: netbox
+  template:
+    metadata:
+      labels:
+        app: netbox
+    spec:
+      containers:
+        - name: netbox
+          image: lscr.io/linuxserver/netbox:v3.6.6-ls163
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /config
+              name: netbox-volume
+          envFrom:
+            - configMapRef:
+                name: netbox-configmap
+          env:
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: netbox-db-credentials
+                  key: dbname
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: netbox-db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: netbox-db-credentials
+                  key: password
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: netbox-db-credentials
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: netbox-db-credentials
+                  key: port
+      volumes:
+        - name: netbox-volume
+          persistentVolumeClaim:
+            claimName: netbox-pvc
