@@ -19,6 +19,10 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
+  tls:
+    - hosts:
+        - netbox.home.maxanderson.tech
+      secretName: netbox-tls
   rules:
     - host: netbox.home.maxanderson.tech
       http:
