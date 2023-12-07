@@ -5,7 +5,6 @@ metadata:
 data:
   TZ: America/New_York
   SUPERUSER_EMAIL: max.a.anderson95@gmail.com
-  ALLOWED_HOST: netbox.home.maxanderson.tech
   DB_NAME: netbox
   REDIS_HOST: netbox-redis
   REDIS_PORT: "6379"
