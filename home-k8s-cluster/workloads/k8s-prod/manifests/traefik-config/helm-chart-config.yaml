@@ -7,7 +7,7 @@ spec:
   valuesContent: |-
     deployment:
       podAnnotations:
-        linkerd.io/inject: enabled
+        linkerd.io/inject: ingress
     service: 
       spec:
         externalTrafficPolicy: Local
