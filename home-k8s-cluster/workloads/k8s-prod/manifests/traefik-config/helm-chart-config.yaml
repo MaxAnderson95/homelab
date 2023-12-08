@@ -1,4 +1,4 @@
-apiVersion: helm.cattle.10/v1
+apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
   name: traefik
