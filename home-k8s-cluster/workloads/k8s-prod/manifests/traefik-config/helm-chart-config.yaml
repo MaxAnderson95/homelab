@@ -5,9 +5,6 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
-    deployment:
-      podAnnotations:
-        linkerd.io/inject: ingress
     service: 
       spec:
         externalTrafficPolicy: Local
