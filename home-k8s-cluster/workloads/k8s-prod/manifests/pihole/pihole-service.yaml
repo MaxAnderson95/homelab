@@ -23,6 +23,7 @@ spec:
   selector:
     app: pihole
   type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
     - name: svc-53-udp-dns
       port: 53
@@ -38,6 +39,7 @@ spec:
   selector:
     app: pihole
   type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
     - name: svc-53-tcp-dns
       port: 53
