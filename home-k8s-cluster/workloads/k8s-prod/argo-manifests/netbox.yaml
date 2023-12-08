@@ -16,5 +16,8 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    managedNamespaceMetadata:
+      annotations:
+        linkerd.io/inject: enabled
     syncOptions:
       - CreateNamespace=true
