@@ -8,6 +8,15 @@ spec:
     scheme: https
     permanent: true
 ---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-dashboard-redirect
+spec:
+  replacePathRegex:
+    regex: ^/$
+    replacement: /dashboard/
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -16,6 +25,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-dashboard-redirect@kubernetescrd
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
