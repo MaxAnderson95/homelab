@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netbootxyz-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netbootxyz
+  template:
+    metadata:
+      labels:
+        app: netbootxyz
+    spec:
+      containers:
+        - name: netbootxyz
+          image: ghcr.io/netbootxyz/netbootxyz:0.7.0-nbxyz2
+          ports:
+            - containerPort: 3000
+            - containerPort: 69
+              protocol: UDP
+            - containerPort: 80
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+            - name: assets-volume
+              mountPath: /assets
+      volumes:
+        - name: config-volume
+          persistentVolumeClaim:
+            claimName: config-pvc
+        - name: assets-volume
+          persistentVolumeClaim:
+            claimName: assets-pvc

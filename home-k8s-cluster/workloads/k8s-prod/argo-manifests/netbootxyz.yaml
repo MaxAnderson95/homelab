@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: netbootxyz
+  namespace: argocd
+spec:
+  destination:
+    namespace: netbootxyz
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: home-k8s-cluster/workloads/k8s-prod/manifests/netbootxyz
+    repoURL: https://github.com/MaxAnderson95/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
