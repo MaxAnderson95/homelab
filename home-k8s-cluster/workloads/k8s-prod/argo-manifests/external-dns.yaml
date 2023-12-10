@@ -27,7 +27,6 @@ spec:
                   key: EXTERNAL_DNS_PIHOLE_PASSWORD
           extraArgs:
             - --pihole-server=http://pihole-web-svc.pihole.svc.cluster.local
-            - --fqdn-template={{.Name}}.home.maxanderson.tech
     - path: home-k8s-cluster/workloads/k8s-prod/manifests/external-dns
       repoURL: https://github.com/MaxAnderson95/homelab.git
       targetRevision: HEAD
