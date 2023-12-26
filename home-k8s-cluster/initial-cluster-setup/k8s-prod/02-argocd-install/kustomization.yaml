@@ -20,3 +20,11 @@ patches:
         path: /data
         value:
           server.insecure: 'true'
+  - target:
+      kind: ConfigMap
+      name: argocd-cm
+    patch: |-
+      - op: add
+        path: /data
+        value:
+          application.instanceLabelKey: argocd.argoproj.io/instance
