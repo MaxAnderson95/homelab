@@ -13,7 +13,7 @@ spec:
         jsonnet:
           libs:
             - home-k8s-cluster/workloads/k8s-prod/manifests/kube-prometheus/kube-prometheus-stack/vendor
-        exclude: "**/*.json"
+        exclude: "*.json"
         recurse: true
     - repoURL: https://github.com/MaxAnderson95/homelab.git
       path: home-k8s-cluster/workloads/k8s-prod/manifests/kube-prometheus
