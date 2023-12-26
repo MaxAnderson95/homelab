@@ -9,6 +9,8 @@ spec:
     path: home-k8s-cluster/workloads/k8s-prod/manifests/kube-prometheus/manifests
     repoURL: https://github.com/MaxAnderson95/homelab.git
     targetRevision: HEAD
+    directory:
+      recurse: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
