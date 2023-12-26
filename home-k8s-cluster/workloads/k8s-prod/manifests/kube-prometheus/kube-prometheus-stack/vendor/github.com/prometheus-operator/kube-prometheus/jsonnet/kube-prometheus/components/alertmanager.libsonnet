@@ -60,7 +60,6 @@ local defaults = {
     ],
   },
   replicas: 3,
-  secrets: [],
   mixin:: {
     ruleLabels: {},
     _config: {
@@ -226,7 +225,6 @@ function(params) {
       },
       resources: am._config.resources,
       nodeSelector: { 'kubernetes.io/os': 'linux' },
-      secrets: am._config.secrets,
       serviceAccountName: am.serviceAccount.metadata.name,
       securityContext: {
         runAsUser: 1000,

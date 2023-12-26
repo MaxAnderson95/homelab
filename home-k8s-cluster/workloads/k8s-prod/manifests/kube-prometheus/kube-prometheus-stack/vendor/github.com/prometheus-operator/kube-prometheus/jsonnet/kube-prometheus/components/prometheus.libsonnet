@@ -340,8 +340,6 @@ function(params) {
       probeNamespaceSelector: {},
       ruleNamespaceSelector: {},
       ruleSelector: p._config.ruleSelector,
-      scrapeConfigSelector: {},
-      scrapeConfigNamespaceSelector: {},
       serviceMonitorSelector: {},
       serviceMonitorNamespaceSelector: {},
       nodeSelector: { 'kubernetes.io/os': 'linux' },

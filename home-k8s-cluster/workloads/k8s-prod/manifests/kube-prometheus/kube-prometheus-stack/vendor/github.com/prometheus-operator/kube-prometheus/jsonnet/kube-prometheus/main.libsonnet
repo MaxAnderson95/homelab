@@ -150,10 +150,6 @@ local utils = import './lib/utils.libsonnet';
       kind: 'Namespace',
       metadata: {
         name: $.values.common.namespace,
-        labels: {
-          'pod-security.kubernetes.io/warn': 'privileged',
-          'pod-security.kubernetes.io/warn-version': 'latest',
-        },
       },
     },
   },

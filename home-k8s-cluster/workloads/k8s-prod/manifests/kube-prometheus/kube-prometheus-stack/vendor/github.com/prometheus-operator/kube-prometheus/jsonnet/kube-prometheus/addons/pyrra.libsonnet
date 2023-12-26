@@ -80,9 +80,6 @@
         securityContext: {
           allowPrivilegeEscalation: false,
           readOnlyRootFilesystem: true,
-          runAsNonRoot: true,
-          capabilities: { drop: ['ALL'] },
-          seccompProfile: { type: 'RuntimeDefault' },
         },
       };
 
