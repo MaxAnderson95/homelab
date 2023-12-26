@@ -5,12 +5,15 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    chart: kube-prometheus-stack
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 55.5.0
-    helm:
-      releaseName: kube-prometheus-stack
+  sources:
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 55.5.0
+      helm:
+        releaseName: kube-prometheus-stack
+    - repoURL: https://github.com/MaxAnderson95/homelab.git
+      path: home-k8s-cluster/workloads/k8s-prod/manifests/kube-prometheus
+      targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
