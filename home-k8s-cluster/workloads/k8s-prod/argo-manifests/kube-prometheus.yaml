@@ -11,6 +11,14 @@ spec:
       targetRevision: 55.5.0
       helm:
         releaseName: kube-prometheus-stack
+        valuesObject:
+          prometheus-node-exporter:
+            prometheus:
+              monitor:
+                relabelings:
+                  - source_labels: [__meta_kubernetes_pod_node_name]
+                    action: replace
+                    target_label: instance
     - repoURL: https://github.com/MaxAnderson95/homelab.git
       path: home-k8s-cluster/workloads/k8s-prod/manifests/kube-prometheus
       targetRevision: HEAD
