@@ -6,15 +6,11 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://github.com/MaxAnderson95/homelab.git
-      path: home-k8s-cluster/workloads/k8s-prod/manifests/kube-prometheus/kube-prometheus-stack
-      targetRevision: HEAD
-      directory:
-        jsonnet:
-          libs:
-            - home-k8s-cluster/workloads/k8s-prod/manifests/kube-prometheus/kube-prometheus-stack/vendor
-        exclude: "*.json"
-        recurse: true
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 55.5.0
+      helm:
+        releaseName: kube-prometheus-stack
     - repoURL: https://github.com/MaxAnderson95/homelab.git
       path: home-k8s-cluster/workloads/k8s-prod/manifests/kube-prometheus
       targetRevision: HEAD
