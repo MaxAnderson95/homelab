@@ -34,7 +34,7 @@ metadata:
   labels:
     name: prometheus-ingress-http
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: monitoring-https-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: monitoring-home-ips-only@kubernetescrd,monitoring-https-redirect@kubernetescrd
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
