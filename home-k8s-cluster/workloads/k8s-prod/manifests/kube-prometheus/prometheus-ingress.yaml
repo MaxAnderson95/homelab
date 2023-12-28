@@ -9,7 +9,7 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: home-ips-only@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: monitoring-home-ips-only@kubernetescrd
 spec:
   tls:
     - hosts:
@@ -34,7 +34,7 @@ metadata:
   labels:
     name: prometheus-ingress-http
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: prometheus-https-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: monitoring-https-redirect@kubernetescrd
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
