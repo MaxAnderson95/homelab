@@ -12,6 +12,9 @@ spec:
       helm:
         releaseName: kube-prometheus-stack
         valuesObject:
+          prometheus:
+            prometheusSpec:
+              enableAdminAPI: true
           prometheus-node-exporter:
             prometheus:
               monitor:
