@@ -11,7 +11,7 @@ spec:
       - calculator
   selector:
     matchLabels:
-      app: frontend
+      component: frontend
   endpoints:
     - targetPort: 80
       path: /metrics
