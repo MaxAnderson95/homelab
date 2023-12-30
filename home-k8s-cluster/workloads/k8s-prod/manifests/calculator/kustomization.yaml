@@ -8,3 +8,4 @@ resources:
   - "./subtract"
   - "./multiply"
   - "./divide"
+  - "ingress.yaml"
