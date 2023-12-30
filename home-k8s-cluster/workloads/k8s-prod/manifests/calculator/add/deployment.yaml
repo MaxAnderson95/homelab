@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: add
+spec:
+  selector:
+    matchLabels:
+      app: add
+  template:
+    metadata:
+      labels:
+        app: add
+    spec:
+      containers:
+        - name: add
+          image: ghcr.io/maxanderson95/calculator-microservice/add:latest
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "80"
+          ports:
+            - containerPort: 80

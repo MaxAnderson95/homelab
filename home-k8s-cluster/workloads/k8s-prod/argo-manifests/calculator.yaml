@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: calculator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: home-k8s-cluster/workloads/k8s-prod/manifests/calculator
+    repoURL: https://github.com/MaxAnderson95/homelab.git
+    targetRevision: HEAD
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: calculator
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

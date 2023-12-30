@@ -1,0 +1,8 @@
+commonLabels:
+  app.kubernetes.io/name: frontend
+
+resources:
+  - "deployment.yaml"
+  - "service.yaml"
+  - "redis.yaml"
+  - "postgres.yaml"

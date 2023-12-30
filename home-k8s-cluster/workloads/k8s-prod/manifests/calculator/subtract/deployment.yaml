@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subtract
+spec:
+  selector:
+    matchLabels:
+      app: subtract
+  template:
+    metadata:
+      labels:
+        app: subtract
+    spec:
+      containers:
+        - name: subtract
+          image: ghcr.io/maxanderson95/calculator-microservice/subtract:latest
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "80"
+            - name: ADD_SERVICE_URL
+              value: "http://add"
+          ports:
+            - containerPort: 80

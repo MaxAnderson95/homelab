@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: divide
+spec:
+  selector:
+    matchLabels:
+      app: divide
+  template:
+    metadata:
+      labels:
+        app: divide
+    spec:
+      containers:
+        - name: divide
+          image: ghcr.io/maxanderson95/calculator-microservice/divide:latest
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "80"
+          ports:
+            - containerPort: 80

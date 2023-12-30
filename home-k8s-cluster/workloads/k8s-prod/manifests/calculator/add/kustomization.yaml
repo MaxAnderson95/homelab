@@ -1,0 +1,6 @@
+commonLabels:
+  app.kubernetes.io/name: add
+
+resources:
+  - "deployment.yaml"
+  - "service.yaml"

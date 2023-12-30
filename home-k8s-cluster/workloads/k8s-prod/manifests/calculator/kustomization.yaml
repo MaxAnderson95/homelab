@@ -1,0 +1,10 @@
+namespace: calculator-service
+commonLabels:
+  app.kubernetes.io/part-of: calculator-service
+
+resources:
+  - "./frontend"
+  - "./add"
+  - "./subtract"
+  - "./multiply"
+  - "./divide"

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/maxanderson95/calculator-microservice/frontend:latest
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "80"
+            - name: ADD_SERVICE_URL
+              value: "http://add"
+            - name: SUBTRACT_SERVICE_URL
+              value: "http://subtract"
+            - name: MULTIPLY_SERVICE_URL
+              value: "http://multiply"
+            - name: DIVIDE_SERVICE_URL
+              value: "http://divide"
+            - name: REDIS_HOST
+              value: "redis"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: DB_HOST
+              value: "postgres"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "postgres"
+            - name: DB_NAME
+              value: "postgres"
+          ports:
+            - containerPort: 80

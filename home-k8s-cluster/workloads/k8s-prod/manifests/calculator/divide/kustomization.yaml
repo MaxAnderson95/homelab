@@ -1,0 +1,6 @@
+commonLabels:
+  app.kubernetes.io/name: divide
+
+resources:
+  - "deployment.yaml"
+  - "service.yaml"
