@@ -3,7 +3,7 @@ kind: ServiceMonitor
 metadata:
   name: frontend
   labels:
-    Release: kube-prometheus-stack
+    release: kube-prometheus-stack
 spec:
   jobLabel: app.kubernetes.io/part-of
   namespaceSelector:
