@@ -6,3 +6,4 @@ resources:
   - "service.yaml"
   - "redis.yaml"
   - "postgres.yaml"
+  - "service-monitor.yaml"
