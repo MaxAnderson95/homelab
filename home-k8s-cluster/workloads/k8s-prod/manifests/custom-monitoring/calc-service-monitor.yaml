@@ -1,18 +1,18 @@
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: frontend
-  labels:
-    release: kube-prometheus-stack
-spec:
-  jobLabel: app.kubernetes.io/part-of
-  namespaceSelector:
-    matchNames:
-      - calculator
-  selector:
-    matchLabels:
-      component: frontend
-  endpoints:
-    - targetPort: 80
-      path: /metrics
-      interval: 5s
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: frontend
+#   labels:
+#     release: kube-prometheus-stack
+# spec:
+#   jobLabel: app.kubernetes.io/part-of
+#   namespaceSelector:
+#     matchNames:
+#       - calculator
+#   selector:
+#     matchLabels:
+#       component: frontend
+#   endpoints:
+#     - targetPort: 80
+#       path: /metrics
+#       interval: 5s
