@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: multiply
+  labels:
+    component: multiply
 spec:
   selector:
     app: multiply
