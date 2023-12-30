@@ -1,4 +1,4 @@
-namespace: calculator-service
+namespace: calculator
 commonLabels:
   app.kubernetes.io/part-of: calculator-service
 
