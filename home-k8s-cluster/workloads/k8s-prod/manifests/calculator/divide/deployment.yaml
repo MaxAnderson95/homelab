@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: divide
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: divide

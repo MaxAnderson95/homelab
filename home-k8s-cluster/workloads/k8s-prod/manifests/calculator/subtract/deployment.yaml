@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: subtract
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: subtract

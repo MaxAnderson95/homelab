@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: multiply
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: multiply
