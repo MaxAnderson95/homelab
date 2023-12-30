@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: home-k8s-cluster/workloads/k8s-prod/manifests/co2-monitor
+    path: home-k8s-cluster/workloads/k8s-prod/manifests/custom-monitoring
     repoURL: https://github.com/MaxAnderson95/homelab.git
     targetRevision: HEAD
   syncPolicy:
